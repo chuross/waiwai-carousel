@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link href="../libs/bootstrap/css/bootstrap.min.css" media="all" rel="stylesheet" />
+<title>sample</title>
+<script src="../libs/jquery-1.11.0.min.js"></script>
+<script src="../jquery.waiwai-carousel.js"></script>
+<style>
+body {
+	margin: 50px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	-webkit-padding-start: 0;
+}
+li {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style: none;
+}
+ul.horizontal {
+	font-size: 0px;
+}
+ul.horizontal li {
+	font-size: 16px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.toc {
+	width: 300px;
+}
+.fixed li {
+	width: 150px;
+	height: 200px;
+}
+.fixedHeight li {
+	height: 200px;
+}
+.d li {
+	margin: 0;
+	width: 800px;
+}
+</style>
+</head>
+
+<script>
+$(document).ready(function() {
+	$('.a').waiwaiCarousel({
+		width: '195px',
+		next: '.anext',
+		prev: '.aprev',
+	});
+	$('.b').waiwaiCarousel({
+		next: '.bnext',
+		prev: '.bprev',
+	});
+	$('.c').waiwaiCarousel({
+		next: '.cnext',
+		prev: '.cprev',
+	});
+	$('.d').waiwaiCarousel({
+		width: '800px',
+		next: '.dnext',
+		prev: '.dprev',
+	});
+	$('.e').waiwaiCarousel({
+		height: '350px',
+		direction: 'vertical',
+		next: '.enext',
+		prev: '.eprev',
+	});
+	$('.f').waiwaiCarousel({
+		direction: 'vertical',
+		next: '.fnext',
+		prev: '.fprev',
+	});
+	$('.g').waiwaiCarousel({
+		direction: 'vertical',
+		width: '300px',
+		height: '210px',
+		next: '.gnext',
+		prev: '.gprev',
+	});
+	$('.h').waiwaiCarousel({
+		width: '195px',
+		transitionSize: 3,
+		next: '.hnext',
+		prev: '.hprev',
+	});
+	$('.i').waiwaiCarousel({
+		animationDuration: 200,
+		next: '.inext',
+		prev: '.iprev',
+	});
+	$('.j').waiwaiCarousel({
+		onNextClick: function() {
+			$('.j').parent().append('<span>next!</span>');
+		},
+		onPrevClick: function() {
+			$('.j').parent().append('<span>prev!</span>');
+		},
+		next: '.jnext',
+		prev: '.jprev',
+	});
+	$('.k').waiwaiCarousel({
+		onTransitionStart: function(result) {
+			$('.k').parent().append('<span>start!</span>');
+		},
+		onTransitionEnd: function(result) {
+			$('.k').parent().append('<span>end!</span>');
+		},
+		next: '.knext',
+		prev: '.kprev',
+	});
+
+	var $tocList = $('.toc .list-group');
+	$('.panel').each(function(i, element) {
+		if(i === 0) {
+			return true;
+		}
+		$tocList.append('<li class="list-group-item"><a href="#' + i + '">' + $(element).find('.panel-heading').text() + '</a></li>');
+	});
+});
+</script>
+<body>
+
+<h1>sample</h1>
+<div class="toc">
+	<div class="panel panel-default">
+		<div class="panel-heading">目次</div>
+		<div class="panel-body">
+			<ul class="list-group">
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="alert alert-warning">『可変』と書かれている箇所は親の要素に合わせてカルーセルを表示する</div>
+<div class="panel panel-default">
+	<div id="1" class="panel-heading">【横方向】ボックスの幅固定</div>
+	<div class="panel-body">
+		<ul class="a fixed horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="aprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="anext">next</a></li>
+		</ul>
+		<pre>
+$('.a').waiwaiCarousel({
+	width: '195px',
+	next: '.anext',
+	prev: '.aprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="2" class="panel-heading">【横方向】ボックスの幅可変</div>
+	<div class="panel-body">
+		<ul class="b fixed horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="bprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="bnext">next</a></li>
+		</ul>
+		<pre>
+$('.b').waiwaiCarousel({
+	next: '.bnext',
+	prev: '.bprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="3" class="panel-heading">【横方向】項目の幅・高さ適当</div>
+	<div class="panel-body">
+		<ul class="c fixedHeight horizontal">
+			<li style="background:red;width:300px;height:100px;">a</li>
+			<li style="background:green;width:200px;">b</li>
+			<li style="background:blue;width:600px;height:300px;">c</li>
+			<li style="background:yellow;width:700px;height:50px;">d</li>
+			<li style="background:hotpink;width:100px;">e</li>
+			<li style="background:lawngreen;width:400px;">f</li>
+			<li style="background:deepskyblue;width:300px;">g</li>
+			<li style="background:violet;width:200px;height:100px;">h</li>
+			<li style="background:orange;width:80px;">i</li>
+			<li style="background:slategray;width:700px;height:200px;">j</li>
+			<li style="background:sienna;width:100px;">k</li>
+			<li style="background:crimson;width:200px;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="cprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="cnext">next</a></li>
+		</ul>
+		<pre>
+$('.c').waiwaiCarousel({
+	next: '.cnext',
+	prev: '.cprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="4" class="panel-heading">【横方向】固定幅いっぱい</div>
+	<div class="panel-body">
+		<ul class="d fixedHeight horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="dprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="dnext">next</a></li>
+		</ul>
+		<pre>
+$('.d').waiwaiCarousel({
+	width: '800px',
+	next: '.dnext',
+	prev: '.dprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="5" class="panel-heading">【縦方向】ボックスの高さ固定</div>
+	<div class="panel-body">
+		<ul class="e fixedHeight">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="eprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="enext">next</a></li>
+		</ul>
+		<pre>
+$('.e').waiwaiCarousel({
+	height: '350px',
+	direction: 'vertical',
+	next: '.enext',
+	prev: '.eprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="6" class="panel-heading">【縦方向】ボックスの高さ可変</div>
+	<div class="panel-body">
+		<div style="height: 600px">
+			<ul class="f fixedHeight">
+				<li style="background:red;">a</li>
+				<li style="background:green;">b</li>
+				<li style="background:blue;">c</li>
+				<li style="background:yellow;">d</li>
+				<li style="background:hotpink;">e</li>
+				<li style="background:lawngreen;">f</li>
+				<li style="background:deepskyblue;">g</li>
+				<li style="background:violet;">h</li>
+				<li style="background:orange;">i</li>
+				<li style="background:slategray;">j</li>
+				<li style="background:sienna;">k</li>
+				<li style="background:crimson;">l</li>
+			</ul>
+		</div>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="fprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="fnext">next</a></li>
+		</ul>
+		<pre>
+$('.e').waiwaiCarousel({
+	direction: 'vertical',
+	next: '.fnext',
+	prev: '.fprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="7" class="panel-heading">【縦方向】ボックスの高さ固定</div>
+	<div class="panel-body">
+		<ul class="g fixed">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="gprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="gnext">next</a></li>
+		</ul>
+		<pre>
+$('.g').waiwaiCarousel({
+	direction: 'vertical',
+	width: '300px',
+	height: '500px',
+	next: '.gnext',
+	prev: '.gprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="8" class="panel-heading">移動量指定</div>
+	<div class="panel-body">
+		<ul class="h fixed horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="hprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="hnext">next</a></li>
+		</ul>
+		<pre>
+$('.h').waiwaiCarousel({
+	width: '195px',
+	height: '300px',
+	transitionSize: 3,
+	next: '.gnext',
+	prev: '.gprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="9" class="panel-heading">アニメーションの速度指定</div>
+	<div class="panel-body">
+		<ul class="i fixed horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="iprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="inext">next</a></li>
+		</ul>
+		<pre>
+$('.i').waiwaiCarousel({
+	animationDuration: 200,
+	next: '.inext',
+	prev: '.iprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="10" class="panel-heading">コントロールボタン押された時のコールバック</div>
+	<div class="panel-body">
+		<ul class="j fixed horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="jprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="jnext">next</a></li>
+		</ul>
+		<pre>
+$('.j').waiwaiCarousel({
+	onNextClick: function() {
+		$('.j').parent().append('<span>next!</span>');
+	},
+	onPrevClick: function() {
+		$('.j').parent().append('<span>prev!</span>');
+	},
+	next: '.jnext',
+	prev: '.jprev',
+});
+		</pre>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div id="11" class="panel-heading">アニメーション開始・終了時のコールバック</div>
+	<div class="panel-body">
+		<ul class="k fixed horizontal">
+			<li style="background:red;">a</li>
+			<li style="background:green;">b</li>
+			<li style="background:blue;">c</li>
+			<li style="background:yellow;">d</li>
+			<li style="background:hotpink;">e</li>
+			<li style="background:lawngreen;">f</li>
+			<li style="background:deepskyblue;">g</li>
+			<li style="background:violet;">h</li>
+			<li style="background:orange;">i</li>
+			<li style="background:slategray;">j</li>
+			<li style="background:sienna;">k</li>
+			<li style="background:crimson;">l</li>
+		</ul>
+		<ul class="pager">
+			<li><a href="javascript:void(0);" class="kprev">prev</a></li>
+			<li><a href="javascript:void(0);" class="knext">next</a></li>
+		</ul>
+		<pre>
+$('.k').waiwaiCarousel({
+	onTransitionStart: function(result) {
+		$('.k').parent().append('<span>start!</span>');
+	},
+	onTransitionEnd: function(result) {
+		$('.k').parent().append('<span>end!</span>');
+	},
+	next: '.knext',
+	prev: '.kprev',
+});
+		</pre>
+	</div>
+</div>
+
+</body>
+</html>
