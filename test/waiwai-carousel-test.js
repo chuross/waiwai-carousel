@@ -13,6 +13,7 @@ module('test-unit', {
 });
 
 test('幅がautoの時は親要素の領域分広がる', function() {
+	$('.wrapper ul').addClass('horizontal');
 	$('.wrapper').css('width', '300px');
 	$('.wrapper ul').waiwaiCarousel();
 	equal($('.waiwai-wrapper').width(), 300);
@@ -27,6 +28,7 @@ test('高さがautoの時は親要素の領域分広がる', function() {
 });
 
 test('幅を指定したらその領域分のカルーセルが生成される', function() {
+	$('.wrapper ul').addClass('horizontal');
 	$('.wrapper ul').waiwaiCarousel({
 		width: '600px'
 	});
@@ -42,6 +44,7 @@ test('高さを指定したらその領域分のカルーセルが生成され�
 });
 
 asyncTest('初期値にいる状態でprevが押されても移動しない', function() {
+	$('.wrapper ul').addClass('horizontal');
 	var $ul = $('.wrapper ul');
 	$ul.waiwaiCarousel({
 		next: '.next',
@@ -58,6 +61,7 @@ asyncTest('初期値にいる状態でprevが押されても移動しない', fu
 });
 
 asyncTest('最後の項目がに表示されている状態でnextが押されても移動しない', function() {
+	$('.wrapper ul').addClass('horizontal');
 	var $ul = $('.wrapper ul');
 	var $li = $('.wrapper ul').find('li');
 	$li.each(function(i, element) {
@@ -100,6 +104,7 @@ asyncTest('最後の項目がに表示されている状態でnextが押され�
 });
 
 asyncTest('項目の横移動ができる', function() {
+	$('.wrapper ul').addClass('horizontal');
 	var $ul = $('.wrapper ul');
 	$ul.append('<li>test4</li>');
 	var $li = $('.wrapper ul').find('li');
@@ -232,6 +237,7 @@ asyncTest('項目の縦移動ができる', function() {
 });
 
 asyncTest('表示領域を見て自動で横の移動量を計算する', function() {
+	$('.wrapper ul').addClass('horizontal');
 	$('.wrapper').css('width', '300px');
 	var $ul = $('.wrapper ul');
 	$ul.append('<li>test4</li>');
@@ -327,6 +333,7 @@ asyncTest('表示領域を見て自動で縦の移動量を計算する', functi
 });
 
 asyncTest('コントロールボタンが押された時コールバックされる', function() {
+	$('.wrapper ul').addClass('horizontal');
 	var $ul = $('.wrapper ul');
 	var $li = $('.wrapper ul').find('li');
 	$li.each(function(i, element) {
@@ -360,6 +367,7 @@ asyncTest('コントロールボタンが押された時コールバックされ
 });
 
 asyncTest('アニメーション時にコールバックされる', function() {
+	$('.wrapper ul').addClass('horizontal');
 	$('.wrapper').css('width', '300px');
 	var $ul = $('.wrapper ul');
 	$ul.append('<li>test4</li>');
